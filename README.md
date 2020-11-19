@@ -7,7 +7,8 @@ A software for managing products and articles which they are made from.
 - List articles
 - Import products from file
 - Import articles from file
-- Sell products
+- Sell product 
+##### Assignment description and sample files under `/assignments`
 
 ## Requirements
 For building and running the application you need:
@@ -25,3 +26,4 @@ For building and running the application you need:
 `mvn spring-boot:run`
 ___
 ### See [Swagger UI](http://localhost:8080/swagger-ui.html) on your localhost for the API docs
+
