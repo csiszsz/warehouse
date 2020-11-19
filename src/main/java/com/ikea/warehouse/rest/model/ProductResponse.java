@@ -1,4 +1,4 @@
-package com.ikea.warehouse.dto;
+package com.ikea.warehouse.rest.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,6 +15,7 @@ import java.util.List;
 public class ProductResponse {
     private Long id;
     private String name;
+    private Integer price;
     private List<ContainArticleResponse> containArticles;
 
 

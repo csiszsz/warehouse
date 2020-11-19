@@ -1,11 +1,11 @@
-package com.ikea.warehouse.mapper;
+package com.ikea.warehouse.rest.mapper;
 
-import com.ikea.warehouse.dto.ArticleResponse;
-import com.ikea.warehouse.dto.ProductRequest;
-import com.ikea.warehouse.dto.ProductResponse;
-import com.ikea.warehouse.model.Article;
-import com.ikea.warehouse.model.Product;
-import com.ikea.warehouse.model.ProductArticle;
+import com.ikea.warehouse.rest.model.ArticleResponse;
+import com.ikea.warehouse.rest.model.ProductRequest;
+import com.ikea.warehouse.rest.model.ProductResponse;
+import com.ikea.warehouse.service.model.Article;
+import com.ikea.warehouse.service.model.Product;
+import com.ikea.warehouse.service.model.ProductArticle;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -37,7 +37,7 @@ public interface ProductMapper {
     Product productRequestToProduct(ProductRequest productRequest);
 
     @Mappings({
-            @Mapping(source = "artId", target = "article.id"),
+            @Mapping(source = "articleId", target = "article.id"),
     })
     ProductArticle containArticlesRequestToProductArticles(ProductRequest.ContainArticleRequest containArticle);
 }

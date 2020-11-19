@@ -3,7 +3,7 @@ package com.ikea.warehouse.service;
 import com.ikea.warehouse.dao.ProductArticleRepository;
 import com.ikea.warehouse.dao.ProductRepository;
 import com.ikea.warehouse.exception.ProductImportException;
-import com.ikea.warehouse.model.Product;
+import com.ikea.warehouse.service.model.Product;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
@@ -32,9 +32,7 @@ public class ProductServiceImpl implements ProductService {
             try {
                 productRepository.save(product);
                 product.getProductArticles().forEach(productArticle -> {
-                    Product p = new Product();
-                    p.setId(product.getId());
-                    productArticle.setProduct(p);
+                    productArticle.setProduct(product);
                     productArticleRepository.save(productArticle);
                 });
             } catch (DataIntegrityViolationException ex) {

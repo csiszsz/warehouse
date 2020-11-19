@@ -1,4 +1,4 @@
-package com.ikea.warehouse.dto;
+package com.ikea.warehouse.rest.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -16,6 +16,7 @@ import java.util.List;
 public class ProductRequest {
     private Long id;
     private String name;
+    private Integer price;
     @JsonProperty("contain_articles")
     private List<ContainArticleRequest> containArticles;
 
@@ -26,7 +27,7 @@ public class ProductRequest {
     @AllArgsConstructor
     public static class ContainArticleRequest {
         @JsonProperty("art_id")
-        private Long artId;
+        private Long articleId;
         @JsonProperty("amount_of")
         private int amountOf;
     }

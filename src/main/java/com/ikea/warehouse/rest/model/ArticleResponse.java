@@ -1,4 +1,4 @@
-package com.ikea.warehouse.dto;
+package com.ikea.warehouse.rest.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ArticleResponse {
-    private String artId;
+    private String id;
     private String name;
     private int stock;
 }

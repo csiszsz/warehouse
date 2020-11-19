@@ -1,7 +1,7 @@
 package com.ikea.warehouse.service;
 
 import com.ikea.warehouse.dao.ArticleRepository;
-import com.ikea.warehouse.model.Article;
+import com.ikea.warehouse.service.model.Article;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.ikea.warehouse.dto;
+package com.ikea.warehouse.rest.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

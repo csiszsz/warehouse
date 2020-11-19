@@ -1,4 +1,4 @@
-package com.ikea.warehouse.dto;
+package com.ikea.warehouse.rest.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,6 +9,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductImportRequest {
-    List<ProductRequest> products;
+public class ArticleImportRequest {
+    List<ArticleRequest> inventory;
 }

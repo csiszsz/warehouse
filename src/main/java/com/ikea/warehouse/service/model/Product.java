@@ -1,11 +1,8 @@
-package com.ikea.warehouse.model;
+package com.ikea.warehouse.service.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Data
@@ -18,6 +15,8 @@ public class Product {
 
     private String name;
 
-    @OneToMany(mappedBy = "product")
+    private Integer price;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private List<ProductArticle> productArticles;
 }
