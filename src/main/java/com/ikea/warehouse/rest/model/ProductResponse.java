@@ -16,6 +16,7 @@ public class ProductResponse {
     private Long id;
     private String name;
     private Integer price;
+    private Integer quantity;
     private List<ContainArticleResponse> containArticles;
 
 

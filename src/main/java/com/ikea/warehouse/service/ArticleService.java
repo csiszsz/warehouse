@@ -1,6 +1,6 @@
 package com.ikea.warehouse.service;
 
-import com.ikea.warehouse.service.model.Article;
+import com.ikea.warehouse.model.Article;
 
 import java.util.List;
 

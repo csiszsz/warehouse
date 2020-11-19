@@ -2,7 +2,7 @@ package com.ikea.warehouse.rest.mapper;
 
 import com.ikea.warehouse.rest.model.ArticleRequest;
 import com.ikea.warehouse.rest.model.ArticleResponse;
-import com.ikea.warehouse.service.model.Article;
+import com.ikea.warehouse.model.Article;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

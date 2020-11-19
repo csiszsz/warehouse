@@ -1,4 +1,4 @@
-package com.ikea.warehouse.service.model;
+package com.ikea.warehouse.model;
 
 import lombok.Data;
 
@@ -12,7 +12,7 @@ public class ProductArticle implements Serializable {
     @EmbeddedId
     ProductArticleKey id = new ProductArticleKey();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY   )
     @MapsId("productId")
     private Product product;
 

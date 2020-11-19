@@ -1,18 +1,18 @@
 package com.ikea.warehouse.rest.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ikea.warehouse.model.Product;
 import com.ikea.warehouse.rest.mapper.ProductMapper;
 import com.ikea.warehouse.rest.model.ProductImportRequest;
 import com.ikea.warehouse.rest.model.ProductResponse;
 import com.ikea.warehouse.service.ProductService;
-import com.ikea.warehouse.service.model.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,13 +36,8 @@ public class ProductController {
         return productMapper.productListToProductResponseList(allProducts);
     }
 
-    @RequestMapping(
-            method = RequestMethod.POST,
-            consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE},
-            name = "/import"
-    )
-    public List<ProductResponse> importJson(@RequestParam("file") MultipartFile file) {
+    @PostMapping(name = "/import", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<Object> importJson(@RequestParam("file") MultipartFile file) {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
         ProductImportRequest productImportRequest;
@@ -50,7 +45,7 @@ public class ProductController {
             InputStream inJson = file.getResource().getInputStream();
             productImportRequest = new ObjectMapper().readValue(inJson, ProductImportRequest.class);
         } catch (IOException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Couldn't read import file: " + fileName + '!');
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Couldn't read import file: " + fileName + '!');
         }
 
         if (productImportRequest != null) {
@@ -58,21 +53,23 @@ public class ProductController {
                 List<Product> products = productMapper.productRequestListToProductList(productImportRequest.getProducts());
                 productService.importMultiple(products);
             } catch (Exception ex) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
             }
         }
 
-        List<Product> allProducts = productService.list();
-
-        return productMapper.productListToProductResponseList(allProducts);
+        return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/sell/{id}")
-    public List<ProductResponse> sell(@PathVariable String id) {
+    @DeleteMapping("/sell/{id}")
+    public ResponseEntity<Object> sell(@PathVariable Long id) {
         log.info("Sell item with id: " + id);
 
-        List<Product> allProducts = productService.list();
+        try {
+            productService.sell(id);
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        }
 
-        return productMapper.productListToProductResponseList(allProducts);
+        return ResponseEntity.ok().build();
     }
 }

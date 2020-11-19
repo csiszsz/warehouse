@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ArticleResponse {
-    private String id;
+    private Long id;
     private String name;
     private int stock;
 }

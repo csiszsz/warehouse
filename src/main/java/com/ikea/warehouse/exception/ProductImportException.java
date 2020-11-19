@@ -7,10 +7,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ProductImportException extends RuntimeException {
     private static final String MESSAGE = "Error while saving product with name: %s. Makes sure all articles are added to the inventory.";
 
-    public ProductImportException() {
-        super();
-    }
-
     public ProductImportException(String name) {
         super(String.format(MESSAGE, name));
     }

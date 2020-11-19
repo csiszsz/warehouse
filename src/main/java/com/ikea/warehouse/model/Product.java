@@ -1,4 +1,4 @@
-package com.ikea.warehouse.service.model;
+package com.ikea.warehouse.model;
 
 import lombok.Data;
 
@@ -17,6 +17,9 @@ public class Product {
 
     private Integer price;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    @Transient
+    private Integer quantity;
+
+    @OneToMany(mappedBy = "product")
     private List<ProductArticle> productArticles;
 }

@@ -1,12 +1,14 @@
 package com.ikea.warehouse.service;
 
 import com.ikea.warehouse.dao.ArticleRepository;
-import com.ikea.warehouse.service.model.Article;
+import com.ikea.warehouse.model.Article;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class ArticleServiceImpl implements ArticleService {
 
     private ArticleRepository articleRepository;
