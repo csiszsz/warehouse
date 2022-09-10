@@ -1,7 +1,7 @@
 # Warehouse API
 
 Simple RESTful API implementation using Java [Spring Boot](http://projects.spring.io/spring-boot/).
-A software for managing products and articles which they are made from.
+A simple application for inventory management
 ## Functionalities:
 - List products with quantity based on articles stock.
 - List articles
